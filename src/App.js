@@ -45,10 +45,26 @@ function DropdownMenu() {
         timeout={500}
         classNames="menu-primary"
       >
-        <DropdownItem>My Profile</DropdownItem>
-        <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
-          Settings
-        </DropdownItem>
+        <div className="menu">
+          <DropdownItem>My Profile</DropdownItem>
+          <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+            Settings
+          </DropdownItem>
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={activeMenu === "main"}
+        unmountOnExit
+        timeout={500}
+        classNames="menu-primary"
+      >
+        <div className="menu">
+          <DropdownItem>My Profile</DropdownItem>
+          <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+            Settings
+          </DropdownItem>
+        </div>
       </CSSTransition>
     </div>
   );
