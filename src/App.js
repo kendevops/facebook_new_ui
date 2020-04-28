@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
+import { CSSTransition } from "react-transition-group";
+
 import { ReactComponent as BellIcon } from "./icons/bell.svg";
 import { ReactComponent as MessengerIcon } from "./icons/messenger.svg";
 import { ReactComponent as CaretIcon } from "./icons/caret.svg";
@@ -24,6 +26,8 @@ function App() {
 }
 
 function DropdownMenu() {
+  const [activeMenu, setActiveMenu] = useState("main");
+
   function DropdownItem(props) {
     return (
       <a href="#" className="menu-item">
@@ -35,10 +39,17 @@ function DropdownMenu() {
   }
   return (
     <div className="dropdown">
-      <DropdownItem>My Profile</DropdownItem>
-      <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
-        Settings
-      </DropdownItem>
+      <CSSTransition
+        in={activeMenu === "main"}
+        unmountOnExit
+        timeout={500}
+        classNames="menu-primary"
+      >
+        <DropdownItem>My Profile</DropdownItem>
+        <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+          Settings
+        </DropdownItem>
+      </CSSTransition>
     </div>
   );
 }
