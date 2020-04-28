@@ -36,10 +36,9 @@ function DropdownMenu() {
   return (
     <div className="dropdown">
       <DropdownItem>My Profile</DropdownItem>
-      <DropdownItem
-        leftIcon={<CogIcon />}
-        rightIcon={<ChevronIcon />}
-      ></DropdownItem>
+      <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+        Settings
+      </DropdownItem>
     </div>
   );
 }
