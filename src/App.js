@@ -26,11 +26,21 @@ function App() {
 }
 
 function DropdownMenu() {
-  const [activeMenu, setActiveMenu] = useState("main");
+  const [activeMenu, setActiveMenu] = useState("main"); // settings
+  const [menuHeight, setMenuHeight] = useState(null);
+
+  function calcHeight(el) {
+    const height = el.offsetHeight;
+    setMenuHeight(height);
+  }
 
   function DropdownItem(props) {
     return (
-      <a href="#" className="menu-item">
+      <a
+        href="#"
+        className="menu-item"
+        onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
+      >
         <span className="icon-button">{props.leftIcon}</span>
         {props.children}
         <span className="icon-rightIcon">{props.right}</span>
@@ -38,32 +48,44 @@ function DropdownMenu() {
     );
   }
   return (
-    <div className="dropdown">
+    <div className="dropdown" style={{ height: menuHeight }}>
       <CSSTransition
         in={activeMenu === "main"}
         unmountOnExit
         timeout={500}
         classNames="menu-primary"
+        onEnter={calcHeight}
       >
         <div className="menu">
           <DropdownItem>My Profile</DropdownItem>
-          <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+          <DropdownItem
+            leftIcon={<CogIcon />}
+            rightIcon={<ChevronIcon />}
+            goToMenu="settings"
+          >
             Settings
           </DropdownItem>
         </div>
       </CSSTransition>
 
       <CSSTransition
-        in={activeMenu === "main"}
+        in={activeMenu === "settings"}
         unmountOnExit
         timeout={500}
-        classNames="menu-primary"
+        classNames="menu-secondary"
+        onEnter={calcHeight}
       >
         <div className="menu">
-          <DropdownItem>My Profile</DropdownItem>
-          <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
-            Settings
-          </DropdownItem>
+          <DropdownItem leftIcon={<ArrowIcon />} goToMenu="main" />
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
+          <DropdownItem>Settings</DropdownItem>
         </div>
       </CSSTransition>
     </div>

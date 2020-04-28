@@ -88,6 +88,7 @@ a {
   border-radius: var(--border-radius);
   padding: 1rem;
   overflow: hidden;
+  transition: height var(--speed) ease;
 }
 
 .menu-item {
@@ -123,5 +124,22 @@ a {
 
 .menu-primary-exit-active {
   transform: translateX(-110%);
+  transition: all var(--speed) ease;
+}
+
+.menu-secondary-enter {
+  transform: translateX(110%);
+}
+
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+
+/* .menu-secondary-exit {
+} */
+
+.menu-secondary-exit-active {
+  transform: translateX(110%);
   transition: all var(--speed) ease;
 }
